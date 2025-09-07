@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import IconButton from '../components/IconButton';
 import { initNotifications, scheduleLocalNotification } from '../services/notifications';
 
 export default function SettingsScreen() {
@@ -10,8 +11,9 @@ export default function SettingsScreen() {
       <Text style={styles.title}>Settings</Text>
       <Text>Household, privacy, and notifications.</Text>
       <View style={{ height: 16 }} />
-      <Button
-        title="Enable Notifications"
+      <IconButton
+        icon="notifications"
+        label="Enable Notifications"
         onPress={async () => {
           const res = await initNotifications();
           setNotifState(res);
@@ -24,8 +26,9 @@ export default function SettingsScreen() {
         </View>
       )}
       <View style={{ height: 8 }} />
-      <Button
-        title="Send Local Test Notification"
+      <IconButton
+        icon="notifications-circle"
+        label="Send Local Test Notification"
         onPress={() => scheduleLocalNotification('PlayPal Test', 'This is a local notification.')}
       />
     </View>

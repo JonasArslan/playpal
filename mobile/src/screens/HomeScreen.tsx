@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, Button, StyleSheet, PermissionsAndroid, Platform, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, PermissionsAndroid, Platform, TouchableOpacity } from 'react-native';
+import IconButton from '../components/IconButton';
 import MapView, { Marker, Region } from 'react-native-maps';
 import Geolocation from 'react-native-geolocation-service';
 import { useAppState } from '../state/AppState';
@@ -80,7 +81,7 @@ export default function HomeScreen({ navigation }: any) {
         </MapView>
       )}
       <View style={styles.actions}>
-        <Button title="Quick Check-In" onPress={() => navigation.navigate('CheckIn')} />
+        <IconButton icon="checkmark-circle" label="Quick Check-In" onPress={() => navigation.navigate('CheckIn')} />
         {hasLocation && (
           <TouchableOpacity
             accessibilityLabel="Recenter map"

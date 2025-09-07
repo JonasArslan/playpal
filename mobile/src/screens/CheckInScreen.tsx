@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, TextInput, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TextInput, ScrollView } from 'react-native';
+import IconButton from '../components/IconButton';
 import { useAppState } from '../state/AppState';
 
 export default function CheckInScreen({ navigation }: any) {
@@ -17,18 +18,18 @@ export default function CheckInScreen({ navigation }: any) {
       <Text style={styles.title}>Check-In</Text>
       <Text style={styles.section}>Select Kid(s)</Text>
       {kids.map(k => (
-        <Button
-          key={k.id}
-          title={`${selectedKids.includes(k.id) ? '✓ ' : ''}${k.name}`}
+        <IconButton
+          icon={selectedKids.includes(k.id) ? 'person' : 'person-outline'}
+          label={k.name}
           onPress={() => setSelectedKids(prev => toggle(prev, k.id))}
         />
       ))}
 
       <Text style={styles.section}>Select Friend(s)</Text>
       {friends.map(f => (
-        <Button
-          key={f.id}
-          title={`${selectedFriends.includes(f.id) ? '✓ ' : ''}${f.name}`}
+        <IconButton
+          icon={selectedFriends.includes(f.id) ? 'people' : 'people-outline'}
+          label={f.name}
           onPress={() => setSelectedFriends(prev => toggle(prev, f.id))}
         />
       ))}
@@ -42,8 +43,9 @@ export default function CheckInScreen({ navigation }: any) {
       />
 
       <View style={{ height: 12 }} />
-      <Button
-        title="Confirm Check-In"
+      <IconButton
+        icon="checkmark"
+        label="Confirm Check-In"
         onPress={() => {
           selectedKids.forEach(k => selectedFriends.forEach(f => checkIn(host, k, f)));
           navigation.goBack();

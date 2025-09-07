@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, Button, FlatList } from 'react-native';
+import { View, Text, StyleSheet, TextInput, FlatList } from 'react-native';
+import IconButton from '../components/IconButton';
 import { useAppState } from '../state/AppState';
 
 export default function FriendsScreen() {
@@ -26,8 +27,9 @@ export default function FriendsScreen() {
         onChangeText={setParentPhone}
         style={styles.input}
       />
-      <Button
-        title="Add Parent"
+      <IconButton
+        icon="person-add"
+        label="Add Parent"
         onPress={() => {
           if (parentName.trim()) {
             addParent({ id: '', name: parentName.trim(), phone: parentPhone.trim() || undefined });
@@ -50,8 +52,9 @@ export default function FriendsScreen() {
         onChangeText={setFriendParentId}
         style={styles.input}
       />
-      <Button
-        title="Add Friend"
+      <IconButton
+        icon="person-add-outline"
+        label="Add Friend"
         onPress={() => {
           if (friendName.trim()) {
             addFriend({ id: '', name: friendName.trim(), parentId: friendParentId.trim() || undefined });
