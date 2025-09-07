@@ -16,6 +16,7 @@ export type Friend = {
   id: UUID;
   name: string;
   parentId?: UUID;
+  lastKnownLocation?: { latitude: number; longitude: number; timestamp: number };
 };
 
 export type Household = {
@@ -24,6 +25,7 @@ export type Household = {
   address: string;
   guardians: ParentContact[];
   kids: Kid[];
+  location?: { latitude: number; longitude: number };
 };
 
 export type VisitEvent = {

@@ -10,6 +10,7 @@ import ActivityScreen from '../screens/ActivityScreen';
 import FriendsScreen from '../screens/FriendsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import { useAuth } from '../state/Auth';
+import InviteScreen from '../screens/InviteScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -35,6 +36,7 @@ function HomeTabs() {
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Activity" component={ActivityScreen} />
       <Tab.Screen name="Friends" component={FriendsScreen} />
+      <Tab.Screen name="Invite" component={InviteScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   );
