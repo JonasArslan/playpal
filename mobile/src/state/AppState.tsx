@@ -8,7 +8,12 @@ export type AppStateValue = {
   friends: Friend[];
   kids: Kid[];
   visits: VisitEvent[];
-  checkIn: (hostHouseholdId: UUID, kidId: UUID, friendId: UUID) => void;
+  checkIn: (
+    hostHouseholdId: UUID,
+    kidId: UUID,
+    friendId: UUID,
+    options?: { verified?: boolean; expectedPickupAt?: number; note?: string }
+  ) => void;
   checkOut: (hostHouseholdId: UUID, kidId: UUID, friendId: UUID) => void;
   addParent: (parent: ParentContact) => void;
   addFriend: (friend: Friend) => void;
@@ -23,6 +28,7 @@ export function AppStateProvider({ children }: { children: React.ReactNode }) {
       id: 'house-1',
       name: 'Smith Household',
       address: '123 Maple St',
+      geofenceRadiusM: 150,
       guardians: [
         { id: 'parent-1', name: 'Alex Smith', phone: '+1-555-0101' },
         { id: 'parent-2', name: 'Jamie Smith', phone: '+1-555-0102' },
@@ -31,6 +37,7 @@ export function AppStateProvider({ children }: { children: React.ReactNode }) {
         { id: 'kid-1', name: 'Mia Smith' },
         { id: 'kid-2', name: 'Noah Smith' },
       ],
+      location: { latitude: 37.7749, longitude: -122.4194 },
     },
   ]);
   const [parents, setParents] = useState<ParentContact[]>([
@@ -45,10 +52,25 @@ export function AppStateProvider({ children }: { children: React.ReactNode }) {
   ]);
   const [visits, setVisits] = useState<VisitEvent[]>([]);
 
-  const checkIn = (hostHouseholdId: UUID, kidId: UUID, friendId: UUID) => {
+  const checkIn = (
+    hostHouseholdId: UUID,
+    kidId: UUID,
+    friendId: UUID,
+    options?: { verified?: boolean; expectedPickupAt?: number; note?: string }
+  ) => {
     setVisits(prev => [
       ...prev,
-      { id: String(Date.now()), timestamp: Date.now(), type: 'checkin', hostHouseholdId, kidId, friendId },
+      {
+        id: String(Date.now()),
+        timestamp: Date.now(),
+        type: 'checkin',
+        hostHouseholdId,
+        kidId,
+        friendId,
+        verified: options?.verified,
+        expectedPickupAt: options?.expectedPickupAt,
+        note: options?.note,
+      },
     ]);
   };
 

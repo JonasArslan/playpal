@@ -26,6 +26,7 @@ export type Household = {
   guardians: ParentContact[];
   kids: Kid[];
   location?: { latitude: number; longitude: number };
+  geofenceRadiusM?: number;
 };
 
 export type VisitEvent = {
@@ -35,4 +36,7 @@ export type VisitEvent = {
   hostHouseholdId: UUID;
   kidId: UUID;
   friendId: UUID;
+  verified?: boolean;
+  expectedPickupAt?: number;
+  note?: string;
 };
