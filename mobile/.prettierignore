@@ -1,0 +1,18 @@
+# Node
+node_modules
+.npm
+
+# Build
+build
+dist
+
+# Logs
+*.log
+
+# iOS
+Pods
+DerivedData
+
+# Android
+.gradle
+/local.properties

@@ -1,0 +1,37 @@
+# macOS
+.DS_Store
+
+# Environments
+.env
+.env.*
+.venv
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+
+# Node
+node_modules/
+.npm/
+.yarn/
+dist/
+build/
+
+# Editors
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+
+# Coverage
+.coverage
+coverage/
+
