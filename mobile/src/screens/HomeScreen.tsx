@@ -62,6 +62,7 @@ export default function HomeScreen({ navigation }: any) {
           style={styles.map}
           initialRegion={region}
           showsUserLocation={hasLocation}
+          testID="home-map"
         >
           {friends
             .filter(f => !!f.lastKnownLocation)
